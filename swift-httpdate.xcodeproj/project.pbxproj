@@ -10,6 +10,7 @@
 		69CE2EE81FCEFC2B006BC1A1 /* swift_httpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CE2EDE1FCEFC2B006BC1A1 /* swift_httpdate.framework */; };
 		69CE2EED1FCEFC2B006BC1A1 /* swift_httpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE2EEC1FCEFC2B006BC1A1 /* swift_httpdateTests.swift */; };
 		69CE2EEF1FCEFC2B006BC1A1 /* swift_httpdate.h in Headers */ = {isa = PBXBuildFile; fileRef = 69CE2EE11FCEFC2B006BC1A1 /* swift_httpdate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		69CE2EFA1FCEFC5E006BC1A1 /* httpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69CE2EF91FCEFC5E006BC1A1 /* httpdate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		69CE2EE71FCEFC2B006BC1A1 /* swift-httpdateTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "swift-httpdateTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		69CE2EEC1FCEFC2B006BC1A1 /* swift_httpdateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = swift_httpdateTests.swift; sourceTree = "<group>"; };
 		69CE2EEE1FCEFC2B006BC1A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69CE2EF91FCEFC5E006BC1A1 /* httpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = httpdate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 		69CE2ED41FCEFC2B006BC1A1 = {
 			isa = PBXGroup;
 			children = (
+				69CE2EF81FCEFC39006BC1A1 /* Sources */,
 				69CE2EE01FCEFC2B006BC1A1 /* swift-httpdate */,
 				69CE2EEB1FCEFC2B006BC1A1 /* swift-httpdateTests */,
 				69CE2EDF1FCEFC2B006BC1A1 /* Products */,
@@ -84,6 +87,14 @@
 				69CE2EEE1FCEFC2B006BC1A1 /* Info.plist */,
 			);
 			path = "swift-httpdateTests";
+			sourceTree = "<group>";
+		};
+		69CE2EF81FCEFC39006BC1A1 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				69CE2EF91FCEFC5E006BC1A1 /* httpdate.swift */,
+			);
+			path = Sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,6 +159,7 @@
 				TargetAttributes = {
 					69CE2EDD1FCEFC2B006BC1A1 = {
 						CreatedOnToolsVersion = 9.1;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 					};
 					69CE2EE61FCEFC2B006BC1A1 = {
@@ -196,6 +208,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69CE2EFA1FCEFC5E006BC1A1 /* httpdate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,7 +280,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -321,7 +334,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -334,6 +347,7 @@
 		69CE2EF31FCEFC2B006BC1A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -346,6 +360,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Individual.swift-httpdate";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -354,6 +369,7 @@
 		69CE2EF41FCEFC2B006BC1A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				CODE_SIGN_STYLE = Automatic;
 				DEFINES_MODULE = YES;
@@ -374,6 +390,7 @@
 		69CE2EF61FCEFC2B006BC1A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "swift-httpdateTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -387,6 +404,7 @@
 		69CE2EF71FCEFC2B006BC1A1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "swift-httpdateTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
