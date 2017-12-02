@@ -118,11 +118,12 @@ class swift_httpdateTests: XCTestCase {
         }
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+    func testTimeZoneUTC() {
+        let pattern = "19940203T141529Z"
+        if let result = try? Httpdate.str2time(str: pattern) {
+            XCTAssertEqual(TimeZone(identifier: "UTC"), (result.1)!)
+        } else {
+            XCTFail()
         }
     }
-    
 }
