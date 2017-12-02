@@ -6,7 +6,7 @@ provides functions that deal the date formats used by the HTTP protocol (and the
 ```swift
 if let r = try? Httpdate.str2time(str: "Tuesday, 08-Feb-1994 14:15:29 GMT") {
     // str2time return tuple (DateComponents, Timezone)
-    if let comp = r.0 {
+    if let comp = r.dateComponents {
         print(comp) // => "year: 1994 month: 2 day: 8 hour: 14 minute: 15 second: 29 isLeapMonth: false \n"
     }
 }

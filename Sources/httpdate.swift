@@ -248,7 +248,9 @@ struct Httpdate {
      seconds to be missing and the month to be numerical in most formats.
      */
     //MARK:- Main
-    static func str2time(str:String, timezone:TimeZone? = nil) throws -> (DateComponents?, TimeZone?) {
+    static func str2time(str:String, timezone:TimeZone? = nil) throws -> (dateComponents:DateComponents?, timeZone:TimeZone?) {
+        
+        let tz = (timezone == nil) ? TimeZone.current : timezone
         
         var nsstr = str as NSString
         
@@ -263,7 +265,7 @@ struct Httpdate {
                                    weekday: weekDay2Int(s[1]),
                                    hour: Int(s[5]),
                                    minutes: Int(s[6]),
-                                   seconds: Int(s[7])), timezone)
+                                   seconds: Int(s[7])), tz)
             
         }
         
@@ -288,6 +290,10 @@ struct Httpdate {
                     timezone = TimeZone(secondsFromGMT: offsetstr2offset(s[7]))
                 }
                 
+                if timezone == nil {
+                    timezone = tz
+                }
+                
                 return (datecomponents(year: adjustyear(s[3]),
                                        month: Int(month2Int(s[2])),
                                        day: Int(s[1]),
@@ -303,14 +309,14 @@ struct Httpdate {
             
             let s:[String] = result2array(result: result, nsstr: nsstr)
             
-            var tz:TimeZone?
+            var timezone:TimeZone?
             
             if s[safe: 6] != "" {
-                tz = loadTZ(s[safe: 6])
+                timezone = loadTZ(s[safe: 6])
             }
             
-            if tz == nil {
-                tz = timezone
+            if timezone == nil {
+                timezone = tz
             }
             
             return (datecomponents(year: adjustyear(s[7]),
@@ -338,7 +344,7 @@ struct Httpdate {
                                    weekday: nil,
                                    hour: 0,
                                    minutes: 0,
-                                   seconds: 0), nil)
+                                   seconds: 0), tz)
         }
         
         let regexiso8601 = try NSRegularExpression(pattern: iso8601Reg)

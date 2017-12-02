@@ -40,7 +40,7 @@ class swift_httpdateTests: XCTestCase {
         
         for p in patterns {
             if let result = try? Httpdate.str2time(str: p) {
-                let date = Calendar(identifier: .gregorian).date(from: (result.0)!)
+                let date = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
                 XCTAssertEqual(date, expect)
             } else {
                 XCTFail()
@@ -69,7 +69,7 @@ class swift_httpdateTests: XCTestCase {
         
         for p in patterns {
             if let result = try? Httpdate.str2time(str: p) {
-                let date = Calendar(identifier: .gregorian).date(from: (result.0)!)
+                let date = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
                 XCTAssertEqual(expect, date)
             } else {
                 XCTFail()
@@ -88,7 +88,7 @@ class swift_httpdateTests: XCTestCase {
         
         let pattern = "02-03-94  02:15PM"
         if let result = try? Httpdate.str2time(str: pattern) {
-            let date = Calendar(identifier: .gregorian).date(from: (result.0)!)
+            let date = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
             XCTAssertEqual(expect, date)
         } else {
             XCTFail()
@@ -110,7 +110,7 @@ class swift_httpdateTests: XCTestCase {
         
         let pattern = "2017-12-02T16:53:36.999999999+00:00"
         if let result = try? Httpdate.str2time(str: pattern) {
-            let date = Calendar(identifier: .gregorian).date(from: (result.0)!)
+            let date = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
             XCTAssertEqual(expect, date)
             XCTAssertEqual(TimeZone(identifier: "GMT"), (result.1)!)
         } else {
@@ -118,10 +118,10 @@ class swift_httpdateTests: XCTestCase {
         }
     }
     
-    func testTimeZoneUTC() {
+    func testTimeZone() {
         let pattern = "19940203T141529Z"
         if let result = try? Httpdate.str2time(str: pattern) {
-            XCTAssertEqual(TimeZone(identifier: "UTC"), (result.1)!)
+            XCTAssertEqual(TimeZone(identifier: "UTC"), (result.timeZone)!)
         } else {
             XCTFail()
         }
