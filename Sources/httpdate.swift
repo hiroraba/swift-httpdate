@@ -145,8 +145,8 @@ struct Httpdate {
     static private func result2array(result:NSTextCheckingResult, nsstr:NSString) -> [String] {
         var str:[String] = []
         for i in 0..<result.numberOfRanges {
-            if Range(result.range(at: i)) != nil {
-                str.append(nsstr.substring(with: result.range(at: i)))
+            if Range(result.rangeAt(i)) != nil {
+                str.append(nsstr.substring(with: result.rangeAt(i)))
             } else {
                 str.append("")
             }
