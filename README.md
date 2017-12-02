@@ -1,5 +1,6 @@
 # swift-httpdate
 [![Build Status](https://travis-ci.org/hiroraba/swift-httpdate.svg?branch=master)](https://travis-ci.org/hiroraba/swift-httpdate)
+[![codecov](https://codecov.io/gh/hiroraba/swift-httpdate/branch/master/graph/badge.svg)](https://codecov.io/gh/hiroraba/swift-httpdate)
 ![Languages](https://img.shields.io/badge/languages-Swift%203.2-orange.svg)
 ![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg?style=flat)
 ![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-red.svg)
