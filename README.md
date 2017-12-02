@@ -1,4 +1,9 @@
 # swift-httpdate
+[![Build Status](https://travis-ci.org/hiroraba/swift-httpdate.svg?branch=master)](https://travis-ci.org/hiroraba/swift-httpdate)
+![Languages](https://img.shields.io/badge/languages-Swift%203.2-orange.svg)
+![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-green.svg?style=flat)
+![Cocoapods compatible](https://img.shields.io/badge/Cocoapods-compatible-red.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
 provides functions that deal the date formats used by the HTTP protocol (and then some more).
 
@@ -48,6 +53,26 @@ The function is able to parse the following formats:
 
 - iOS 8.0+
 - Swift3.2+
+
+## Installation
+
+#### CocoaPods
+```ruby
+platform :ios, '8.0'
+use_frameworks!
+pod 'swift-httpdate'
+```
+
+#### Carthage
+Create a `Cartfile` that lists the framework and run `carthage update`. Follow the [instructions](https://github.com/Carthage/Carthage#if-youre-building-for-ios) to add `$(SRCROOT)/Carthage/Build/iOS/swift-httpdate.framework` to an iOS project.
+
+```
+github "hiroraba/swift-httpdate"
+```
+
+
+## See Also
+This is port of [HTTP:Date](https://metacpan.org/pod/HTTP::Date)
 
 ## Contribute
 
