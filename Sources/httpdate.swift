@@ -158,13 +158,17 @@ struct Httpdate {
     static private func offsetstr2offset(_ str:String) -> Int {
         let regexOffset = try! NSRegularExpression(pattern: "^([-+])?(\\d\\d?):?(\\d\\d)?$")
         if let result = regexOffset.firstMatch(in: str, options: NSRegularExpression.MatchingOptions(), range: NSMakeRange(0, str.count)) {
+            
             let s = result2array(result: result, nsstr: str as NSString)
+            
             let hour = Int(s[2])
             let minites = Int(s[3])
             let offset = (hour ?? 0)*60*60 + (minites ?? 0)*60
+            
             if s[1] == "-" {
                 return offset * -1
             }
+            
             return offset
         }
         return 0
@@ -258,7 +262,6 @@ struct Httpdate {
         let regexFR = try NSRegularExpression(pattern: fastReg)
         if let result = regexFR.firstMatch(in: str, options: NSRegularExpression.MatchingOptions(), range: NSMakeRange(0, nsstr.length)) {
             let s:[String] = result2array(result: result, nsstr: nsstr)
-            print(s)
             return (datecomponents(year: Int(s[4]),
                                    month: month2Int(s[3]),
                                    day: Int(s[2]),
@@ -271,11 +274,9 @@ struct Httpdate {
         
         nsstr = str.replacingOccurrences(of: "^\\s+", with: "", options: .regularExpression, range: str.range(of: str)) as NSString
         nsstr = str.replacingOccurrences(of: uselessweekday, with: "", options: .regularExpression, range: (nsstr as String).range(of: (nsstr as String))) as NSString
-        print(nsstr)
         let regexMFR = try NSRegularExpression(pattern: mostFormatReg)
         if let result = regexMFR.firstMatch(in: (nsstr as String), options: NSRegularExpression.MatchingOptions(), range: NSMakeRange(0, nsstr.length)) {
             let s:[String] = result2array(result: result, nsstr: nsstr)
-            print(s)
             switch s[safe : 8] {
             case "AM","PM":
                 break
