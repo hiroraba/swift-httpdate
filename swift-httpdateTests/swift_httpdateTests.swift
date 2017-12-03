@@ -126,4 +126,68 @@ class swift_httpdateTests: XCTestCase {
             XCTFail()
         }
     }
+    
+    func testAllMonth() {
+        
+        var comp = DateComponents()
+        comp.year = 2017
+        comp.month = 1
+        comp.day = 1
+        comp.hour = 16
+        comp.minute = 53
+        comp.second = 36
+        
+        let testPattern = { (comp:DateComponents, p:String) -> Void in
+            if let result = try? Httpdate.str2time(str: p) {
+                let expect = Calendar(identifier: .gregorian).date(from: comp)
+                let res = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
+                XCTAssertEqual(expect,res)
+            } else {
+                XCTFail()
+            }
+        }
+        
+        let patternJan = "Sun, 01 Jan 2017 16:53:36 GMT"
+        testPattern(comp, patternJan)
+        
+        let patternMar = "Wed, 01 Mar 2017 16:53:36 GMT"
+        comp.month = 3
+        testPattern(comp, patternMar)
+        
+        let patternApr = "Fri, 01 Apr 2017 16:53:36 GMT"
+        comp.month = 4
+        testPattern(comp, patternApr)
+        
+        let patternMay = "Mon, 01 May 2017 16:53:36 GMT"
+        comp.month = 5
+        testPattern(comp, patternMay)
+        
+        let patternJun = "Thu, 01 Jun 2017 16:53:36 GMT"
+        comp.month = 6
+        testPattern(comp, patternJun)
+        
+        let patternJul = "Sat, 01 Jul 2017 16:53:36 GMT"
+        comp.month = 7
+        testPattern(comp, patternJul)
+        
+        let patternAug = "Tue, 01 Aug 2017 16:53:36 GMT"
+        comp.month = 8
+        testPattern(comp, patternAug)
+
+        let patternSep = "Fri, 01 Sep 2017 16:53:36 GMT"
+        comp.month = 9
+        testPattern(comp, patternSep)
+        
+        let patternOct = "Sun, 01 Oct 2017 16:53:36 GMT"
+        comp.month = 10
+        testPattern(comp, patternOct)
+        
+        let patternNov = "Wed, 01 Nov 2017 16:53:36 GMT"
+        comp.month = 11
+        testPattern(comp, patternNov)
+        
+        let patternDec = "Fri, 01 Dec 2017 16:53:36 GMT"
+        comp.month = 12
+        testPattern(comp, patternDec)
+    }
 }
