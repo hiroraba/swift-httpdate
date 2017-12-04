@@ -277,7 +277,7 @@ struct Httpdate {
         let regexMFR = try NSRegularExpression(pattern: mostFormatReg)
         if let result = regexMFR.firstMatch(in: (nsstr as String), options: NSRegularExpression.MatchingOptions(), range: NSMakeRange(0, nsstr.length)) {
             let s:[String] = result2array(result: result, nsstr: nsstr)
-            switch s[safe : 8] {
+            switch s[safe : 8].uppercased() {
             case "AM","PM":
                 break
             default:
@@ -387,9 +387,9 @@ struct Httpdate {
             var hour:Int = Int(s[4]) ?? 0
             let ampm = s[6]
             
-            if ampm == "AM" && hour == 12 {
+            if ampm.uppercased() == "AM" && hour == 12 {
                 hour = 0
-            } else if ampm == "PM" && hour != 12 {
+            } else if ampm.uppercased() == "PM" && hour != 12 {
                 hour = hour + 12
             }
             
