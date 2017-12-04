@@ -11,6 +11,16 @@ import XCTest
 
 class swift_httpdateTests: XCTestCase {
     
+    let testPattern = { (comp:DateComponents, p:String) -> Void in
+        if let result = try? Httpdate.str2time(str: p) {
+            let expect = Calendar(identifier: .gregorian).date(from: comp)
+            let res = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
+            XCTAssertEqual(expect,res)
+        } else {
+            XCTFail()
+        }
+    }
+    
     func testPatterns() {
         
         var comp = DateComponents()
@@ -84,16 +94,17 @@ class swift_httpdateTests: XCTestCase {
         comp.day = 3
         comp.hour = 14
         comp.minute = 15
-        let expect = Calendar(identifier: .gregorian).date(from: comp)
         
-        let pattern = "02-03-94  02:15PM"
-        if let result = try? Httpdate.str2time(str: pattern) {
-            let date = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
-            XCTAssertEqual(expect, date)
-        } else {
-            XCTFail()
+        let patternPM = ["02-03-94  02:15PM", "02-03-94  02:15pm"]
+        for p in patternPM {
+            testPattern(comp, p)
         }
-
+        
+        let patternAM = ["02-03-94  02:15AM", "02-03-94  02:15am"]
+        comp.hour = 2
+        for p in patternAM {
+            testPattern(comp, p)
+        }
     }
     
     func testWithnsec() {
@@ -136,16 +147,6 @@ class swift_httpdateTests: XCTestCase {
         comp.hour = 16
         comp.minute = 53
         comp.second = 36
-        
-        let testPattern = { (comp:DateComponents, p:String) -> Void in
-            if let result = try? Httpdate.str2time(str: p) {
-                let expect = Calendar(identifier: .gregorian).date(from: comp)
-                let res = Calendar(identifier: .gregorian).date(from: (result.dateComponents)!)
-                XCTAssertEqual(expect,res)
-            } else {
-                XCTFail()
-            }
-        }
         
         let patternJan = "Sun, 01 Jan 2017 16:53:36 GMT"
         testPattern(comp, patternJan)
