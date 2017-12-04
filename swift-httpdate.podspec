@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "swift-httpdate"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "provides functions that deal the date formats used by the HTTP protocol (and then some more)."
   s.homepage     = "https://github.com/hiroraba/swift-httpdate"
   s.license      = { :type => "MIT", :file => "LICENSE" }
